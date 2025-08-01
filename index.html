@@ -1,42 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombie Rool - Downloads</title>
+    <title>Zombie Rool - Téléchargements</title>
+    <!-- Utilisation de la police Inter pour un design plus moderne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             text-align: center;
             background: #1e1e2f;
+            /* Ajout d'un dégradé de fond subtil */
+            background: radial-gradient(circle, #2a2e41 0%, #1e1e2f 100%);
             color: white;
-            padding: 50px;
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
         }
+
         h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #b4b7bd;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
             margin-bottom: 40px;
         }
+
         .btn {
             display: inline-block;
-            margin: 20px;
             padding: 15px 30px;
             font-size: 18px;
+            font-weight: bold;
             color: white;
             background-color: #0078d7;
             text-decoration: none;
             border-radius: 8px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
         }
+
         .btn:hover {
             background-color: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
+        }
+
+        /* Conteneur pour les images, utilisant flexbox pour la réactivité */
+        .images-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Les images passeront à la ligne sur les petits écrans */
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .game-image {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .game-image:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Media query pour les petits écrans */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .images-container {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Zombie Rool - Downloads</h1>
-    <p>Click a button below to download the file you need.</p>
+    <h1>Zombie Rool - Téléchargements</h1>
+    <p>Cliquez sur un bouton ci-dessous pour télécharger le fichier dont vous avez besoin.</p>
 
-    <!-- Replace the # with your real download links -->
-    <a class="btn" href="#" download>Download Launcher</a>
-    <a class="btn" href="#" download>Download Mods</a>
+    <div class="btn-container">
+        <!-- Remplacez le # par vos vrais liens de téléchargement -->
+        <a class="btn" href="#" download>Télécharger le lanceur</a>
+        <a class="btn" href="#" download>Télécharger les mods</a>
+    </div>
+
+    <!-- Conteneur pour les deux images du jeu -->
+    <div class="images-container">
+        <!-- Première image - vous devez avoir un dossier 'images' dans votre dépôt GitHub -->
+        <!-- Remplacez le nom de fichier par le nom de votre image, par exemple 'screenshot1.png' -->
+        <img class="game-image" src="./images/screenshot1.png" alt="Screenshot du jeu 1">
+        
+        <!-- Deuxième image - remplacez le nom de fichier par le nom de votre image -->
+        <img class="game-image" src="./images/screenshot2.png" alt="Screenshot du jeu 2">
+    </div>
+
 </body>
 </html>
