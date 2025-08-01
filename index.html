@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombie Rool - Téléchargements</title>
-    <!-- Utilisation de la police Inter pour un design plus moderne -->
+    <title>Zombie Rool - Downloads</title>
+    <!-- Using Inter font for a more modern design -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
             font-family: 'Inter', Arial, sans-serif;
             text-align: center;
             background: #1e1e2f;
-            /* Ajout d'un dégradé de fond subtil */
+            /* Adding a subtle gradient background */
             background: radial-gradient(circle, #2a2e41 0%, #1e1e2f 100%);
             color: white;
             padding: 50px 20px;
@@ -66,11 +66,11 @@
             box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
         }
 
-        /* Conteneur pour les images, utilisant flexbox pour la réactivité */
+        /* Container for images, using flexbox for responsiveness */
         .images-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Les images passeront à la ligne sur les petits écrans */
+            flex-wrap: wrap; /* Images will wrap to the next line on small screens */
             gap: 30px;
             width: 100%;
             max-width: 1200px;
@@ -90,7 +90,7 @@
             transform: scale(1.03);
         }
         
-        /* Media query pour les petits écrans */
+        /* Media query for small screens */
         @media (max-width: 768px) {
             body {
                 padding: 30px 10px;
@@ -110,22 +110,22 @@
     </style>
 </head>
 <body>
-    <h1>Zombie Rool - Téléchargements</h1>
-    <p>Cliquez sur un bouton ci-dessous pour télécharger le fichier dont vous avez besoin.</p>
+    <h1>Zombie Rool - Downloads</h1>
+    <p>Click a button below to download the file you need.</p>
 
     <div class="btn-container">
-        <!-- Remplacez le # par vos vrais liens de téléchargement -->
-        <a class="btn" href="#" download>Télécharger le lanceur</a>
-        <a class="btn" href="#" download>Télécharger les mods</a>
+        <!-- Replace # with your actual download links -->
+        <a class="btn" href="#" download>Download Launcher</a>
+        <a class="btn" href="#" download>Download Mods</a>
     </div>
 
-    <!-- Conteneur pour les deux images du jeu -->
+    <!-- Container for the two game images -->
     <div class="images-container">
-        <!-- Première image - le nom a été mis à jour d'après votre capture d'écran -->
-        <img class="game-image" src="./images/2025-06-11_09.53.42.png" alt="Screenshot du jeu 1">
+        <!-- First image - make sure the file name is correct in your 'images' folder -->
+        <img class="game-image" src="./images/2025-06-11_09-53-42.png" alt="Game Screenshot 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
         
-        <!-- Deuxième image - le nom a été mis à jour d'après votre capture d'écran -->
-        <img class="game-image" src="./images/2025-08-01_04.30.png" alt="Screenshot du jeu 2">
+        <!-- Second image - make sure the file name is correct in your 'images' folder -->
+        <img class="game-image" src="./images/2025-08-01_04-30.png" alt="Game Screenshot 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
     </div>
 
 </body>
