@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombie Rool - Downloads</title>
+    <title>ZombieRool - Downloads</title>
     <!-- Using Inter font for a more modern design -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
             max-width: 600px;
             line-height: 1.5;
         }
-
+        
         .btn-container {
             display: flex;
             justify-content: center;
@@ -57,12 +57,20 @@
             border-radius: 8px;
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
+            cursor: pointer;
         }
 
         .btn:hover {
             background-color: #005a9e;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
+        }
+
+        .btn.disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .images-container {
@@ -111,8 +119,9 @@
     <p>Click a button below to download the file you need.</p>
 
     <div class="btn-container">
-        <a class="btn" href="#" download>Download Launcher</a>
-        <a class="btn" href="#" download>Download Mods</a>
+        <!-- Add a unique ID to each button to easily target it with JavaScript -->
+        <a id="launcher-btn" class="btn disabled" href="#" download>Loading Launcher...</a>
+        <a id="mod-btn" class="btn disabled" href="#" download>Loading Mods...</a>
         <a class="btn" href="https://discord.gg/sGr3MapVJ8" target="_blank">Join Discord</a>
     </div>
 
@@ -121,5 +130,56 @@
         <img class="game-image" src="2025-08-01_04.30.30.png" alt="Game Screenshot 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const launcherBtn = document.getElementById('launcher-btn');
+            const modBtn = document.getElementById('mod-btn');
+            const discordBtn = document.querySelector('.btn[href="https://discord.gg/sGr3MapVJ8"]');
+            
+            // The URL of the raw JSON file on GitHub
+            const jsonUrl = 'https://raw.githubusercontent.com/Cryo60/ZombieRoolLauncher/main/updates.json';
+            
+            // Disable buttons and show loading state
+            launcherBtn.classList.add('disabled');
+            modBtn.classList.add('disabled');
+            
+            // Asynchronously fetch and update the download links
+            fetch(jsonUrl)
+                .then(response => {
+                    // Check if the request was successful
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update the launcher button link
+                    if (data.launcher && data.launcher.download_url) {
+                        launcherBtn.href = data.launcher.download_url;
+                        launcherBtn.innerText = `Download Launcher v${data.launcher.latest_version}`;
+                        launcherBtn.classList.remove('disabled');
+                    } else {
+                        launcherBtn.innerText = 'Launcher Not Found';
+                    }
+
+                    // Update the mod button link
+                    if (data.mod && data.mod.download_url && data.mod.latest_version) {
+                        modBtn.href = data.mod.download_url;
+                        modBtn.innerText = `Download Mods v${data.mod.latest_version}`;
+                        modBtn.classList.remove('disabled');
+                    } else {
+                        modBtn.innerText = 'Mods Not Found';
+                    }
+                })
+                .catch(error => {
+                    // Log the error and update the button text to inform the user
+                    console.error('Error fetching download links:', error);
+                    launcherBtn.innerText = 'Error';
+                    modBtn.innerText = 'Error';
+                    // Re-enable the Discord button in case of an error
+                    if (discordBtn) discordBtn.classList.remove('disabled');
+                });
+        });
+    </script>
 </body>
 </html>
