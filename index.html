@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZombieRool - Downloads</title>
-    <!-- Font -->
+    <meta name="description" content="Téléchargez le launcher et les mods pour ZombieRool. Rejoignez notre communauté sur Discord.">
+    <title>ZombieRool - Téléchargements</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -31,7 +31,6 @@
             font-size: 1.1rem;
             margin-bottom: 40px;
             max-width: 600px;
-            line-height: 1.5;
         }
         .btn-container {
             display: flex;
@@ -41,7 +40,6 @@
             margin-bottom: 40px;
         }
         .btn {
-            display: inline-block;
             padding: 15px 30px;
             font-size: 18px;
             font-weight: bold;
@@ -49,69 +47,58 @@
             background-color: #0078d7;
             text-decoration: none;
             border-radius: 8px;
-            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
         .btn:hover {
             background-color: #005a9e;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
         }
+        .btn:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
         .btn.disabled {
             background-color: #6c757d;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
         .images-container {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            width: 100%;
-            max-width: 1200px;
+            justify-content: center;
         }
         .game-image {
-            width: 100%;
             max-width: 550px;
-            height: auto;
+            width: 100%;
             border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease-in-out;
-            cursor: zoom-in;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
         .game-image:hover {
             transform: scale(1.03);
         }
         /* Lightbox */
-        #lightbox {
+        .lightbox {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
+            inset: 0;
+            background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            cursor: zoom-out;
         }
-        #lightbox img {
+        .lightbox img {
             max-width: 90%;
             max-height: 90%;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+        }
+        .lightbox:target {
+            display: flex;
         }
         @media (max-width: 768px) {
-            body {
-                padding: 30px 10px;
-            }
-            h1 {
-                font-size: 2rem;
-            }
             .btn {
                 width: 100%;
                 max-width: 300px;
@@ -124,85 +111,33 @@
     </style>
 </head>
 <body>
-    <h1>ZombieRool - Downloads</h1>
-    <p>Click a button below to download the file you need.</p>
-
+    <h1>ZombieRool - Téléchargements</h1>
+    <p>Cliquez sur un bouton pour télécharger ou sur une image pour la voir en grand.</p>
     <div class="btn-container">
-        <a id="launcher-btn" class="btn disabled" href="#" download>Loading Launcher...</a>
-        <a id="mod-btn" class="btn disabled" href="#" download>Loading Mods...</a>
-        <a class="btn" href="https://discord.gg/sGr3MapVJ8" target="_blank" rel="noopener noreferrer">Join Discord</a>
+        <a id="launcher-btn" class="btn disabled" aria-label="Télécharger le launcher" href="#">Chargement...</a>
+        <a id="mod-btn" class="btn disabled" aria-label="Télécharger les mods" href="#">Chargement...</a>
+        <a class="btn" href="https://discord.gg/sGr3MapVJ8" target="_blank" rel="noopener noreferrer">Rejoindre Discord</a>
     </div>
-
     <div class="images-container">
-        <img class="game-image" src="2025-06-11_09.53.42.png" alt="Game Screenshot 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
-        <img class="game-image" src="2025-08-01_04.30.30.png" alt="Game Screenshot 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
+        <img class="game-image" src="2025-06-11_09.53.42.png" alt="Capture de ZombieRool" loading="lazy">
+        <img class="game-image" src="2025-08-01_04.30.30.png" alt="Capture de ZombieRool" loading="lazy">
     </div>
-
-    <!-- Lightbox -->
-    <div id="lightbox">
-        <img src="" alt="Preview">
-    </div>
-
+    <div id="lightbox" class="lightbox"><img src="" alt="Image agrandie"></div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const launcherBtn = document.getElementById('launcher-btn');
-            const modBtn = document.getElementById('mod-btn');
-            const discordBtn = document.querySelector('.btn[href="https://discord.gg/sGr3MapVJ8"]');
-            const jsonUrl = 'https://raw.githubusercontent.com/Cryo60/ZombieRoolLauncher/main/updates.json';
-
-            launcherBtn.classList.add('disabled');
-            modBtn.classList.add('disabled');
-
-            fetch(`${jsonUrl}?t=${Date.now()}`)
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.launcher && data.launcher.download_url) {
-                        launcherBtn.href = data.launcher.download_url;
-                        launcherBtn.innerText = `Download Launcher v${data.launcher.latest_version}`;
-                        launcherBtn.classList.remove('disabled');
-                    } else {
-                        launcherBtn.innerText = 'Launcher Not Found';
-                    }
-
-                    if (data.mod && data.mod.download_url && data.mod.latest_version) {
-                        modBtn.href = data.mod.download_url;
-                        modBtn.innerText = `Download Mods v${data.mod.latest_version}`;
-                        modBtn.classList.remove('disabled');
-                    } else {
-                        modBtn.innerText = 'Mods Not Found';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching download links:', error);
-                    launcherBtn.innerText = 'Unable to load launcher';
-                    modBtn.innerText = 'Unable to load mods';
-                    if (discordBtn) discordBtn.classList.remove('disabled');
-                });
-
-            // Lightbox
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = lightbox.querySelector('img');
-            const images = document.querySelectorAll('.game-image');
-
-            images.forEach(img => {
-                img.addEventListener('click', () => {
-                    lightboxImg.src = img.src;
-                    lightbox.style.display = 'flex';
-                });
+        const images = document.querySelectorAll('.game-image');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
             });
-
-            lightbox.addEventListener('click', () => {
-                lightbox.style.display = 'none';
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    lightbox.style.display = 'none';
-                }
-            });
+        });
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.style.display = 'none';
         });
     </script>
 </body>
