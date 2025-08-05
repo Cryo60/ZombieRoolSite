@@ -4,43 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZombieRool - Downloads</title>
-    <!-- Chargement de la police Inter et de Tailwind CSS pour un design moderne -->
+    <!-- Using Inter font for a more modern design -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            /* Application d'un dégradé radial pour le fond */
+            font-family: 'Inter', Arial, sans-serif;
+            text-align: center;
+            background: #1e1e2f;
             background: radial-gradient(circle, #2a2e41 0%, #1e1e2f 100%);
+            color: white;
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
         }
-        /* Style pour l'état désactivé des boutons, car il n'est pas standard dans Tailwind */
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #b4b7bd;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #0078d7;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
+        }
+
         .btn.disabled {
             background-color: #6c757d;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
+
+        .images-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .game-image {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .game-image:hover {
+            transform: scale(1.03);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .images-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
-<body class="font-['Inter'] text-white flex flex-col items-center justify-center min-h-screen p-5 md:p-10">
+<body>
+    <h1>ZombieRool - Downloads</h1>
+    <p>Click a button below to download the file you need.</p>
 
-    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 text-[#b4b7bd]">ZombieRool - Downloads</h1>
-    <p class="text-lg md:text-xl mb-10 max-w-2xl text-center leading-relaxed">
-        Click a button below to download the file you need.
-    </p>
-
-    <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-10 mb-10">
-        <!-- Boutons de téléchargement, initialement désactivés -->
-        <a id="launcher-btn" class="btn disabled px-8 py-4 font-bold rounded-lg shadow-lg bg-[#0078d7] text-white transition-all duration-300 ease-in-out hover:bg-[#005a9e] hover:shadow-xl hover:scale-105" href="#" download>Loading Launcher...</a>
-        <a id="mod-btn" class="btn disabled px-8 py-4 font-bold rounded-lg shadow-lg bg-[#0078d7] text-white transition-all duration-300 ease-in-out hover:bg-[#005a9e] hover:shadow-xl hover:scale-105" href="#" download>Loading Mods...</a>
-        <a class="btn px-8 py-4 font-bold rounded-lg shadow-lg bg-gray-600 text-white transition-all duration-300 ease-in-out hover:bg-gray-700 hover:shadow-xl hover:scale-105" href="https://discord.gg/sGr3MapVJ8" target="_blank">Join Discord</a>
+    <div class="btn-container">
+        <!-- Add a unique ID to each button to easily target it with JavaScript -->
+        <a id="launcher-btn" class="btn disabled" href="#" download>Loading Launcher...</a>
+        <a id="mod-btn" class="btn disabled" href="#" download>Loading Mods...</a>
+        <a class="btn" href="https://discord.gg/sGr3MapVJ8" target="_blank">Join Discord</a>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 w-full max-w-6xl">
-        <!-- Conteneur d'images avec les images du jeu -->
-        <img class="w-full max-w-lg h-auto rounded-xl shadow-2xl transition-transform duration-300 ease-in-out hover:scale-105" src="https://placehold.co/600x400/2b2d3d/b4b7bd?text=Game+Screenshot+1" alt="Game Screenshot 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
-        <img class="w-full max-w-lg h-auto rounded-xl shadow-2xl transition-transform duration-300 ease-in-out hover:scale-105" src="https://placehold.co/600x400/2b2d3d/b4b7bd?text=Game+Screenshot+2" alt="Game Screenshot 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
+    <div class="images-container">
+        <img class="game-image" src="2025-06-11_09.53.42.png" alt="Game Screenshot 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
+        <img class="game-image" src="2025-08-01_04.30.30.png" alt="Game Screenshot 2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2b2d3d/b4b7bd?text=Image+Not+Found'">
     </div>
 
     <script>
